@@ -1,23 +1,13 @@
 .detail-panel {
     &-container {
         position: fixed;
-        top: 0;
-        right: 0;
+        top: 50%;
+        right: 50%;
         z-index: 1000;
+        transform: translate(50%, -50%);
         background-color: #FFF; // todo
+        width: 80rem; // todo @media
+        height: 70%;
     }
 
-    &-item {
-        background-color: #2a873757; // todo
-
-        &-lg {
-            height: 10rem;
-            background-color: #0000ff52;
-        }
-    }
-        
 }
-
-.square {
-    aspect-ratio: 1 / 1;
-  }

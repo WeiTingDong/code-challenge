@@ -1,10 +1,5 @@
-<div class="detail-panel-container col-md-4 col-10 col-lg-3">
-    <div class="row justify-content-between">
-        <div class="detail-panel-item col-md-5 col-4 square">1</div>
-        <div class="detail-panel-item col-md-5 col-4 square">2</div>
-    </div>
-    <div class="row">
-        <app-energy-chart class="detail-panel-item-lg col-md-10 col-4">3</app-energy-chart>
-    </div>
-
+<div class="detail-panel-container">
+    {{locationName}}
+    <button (click)="handleClose()">close</button>
+    <app-energy-chart [xData]="timeList" [yData]="radiationList"/>
 </div>

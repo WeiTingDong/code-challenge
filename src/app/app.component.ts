@@ -7,6 +7,12 @@ import { environment } from '@environments/environment';
 import { EnergyService } from '@services/energy.service';
 // import { SearchBarComponent } from '@components/search-bar/search-bar.component';
 
+interface CityInfo {
+  name: string;
+  coords: [number, number];
+  timezone: string;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,8 +20,12 @@ import { EnergyService } from '@services/energy.service';
 })
 export class AppComponent {
   map: L.Map;
+  cities: CityInfo[]; // todo
   locationName: string = '';
   coordinates: number[] = [];
+  detailData: any; // todo
+  showDetail: boolean = false;
+  showOverview: boolean = false;
 
   constructor(
     private locationService: LocationService,
@@ -24,22 +34,23 @@ export class AppComponent {
 
   ngOnInit() {
     this.initMap();
-    this.fetchWeatherData();
+    this.fetchLocationData();
   }
 
   private initMap(): void {
     this.map = L.map('map').setView([1.3521, 103.8198], 5); // todo
 
     L.tileLayer(environment.tileLayerUrl, {
+      minZoom: 2,
       attribution: '&copy; lovely frog code challenge',
     }).addTo(this.map);
   }
 
-  private fetchWeatherData(): void {
+  private fetchLocationData(): void {
     this.locationService.getLocationList().subscribe((data) => {
       const markers = (L as any).markerClusterGroup();
 
-      data?.area_metadata?.forEach((area) => {
+      this.cities = data?.area_metadata?.map((area) => {
         const { name, label_location } = area;
         const coords: L.LatLngTuple = [
           label_location.latitude,
@@ -47,24 +58,55 @@ export class AppComponent {
         ];
         const marker = L.marker(coords).on('click', () => {
           this.fetchEnergyData(name, coords);
+          this.coordinates = coords;
+          this.locationName = name;
+          this.showDetail = true;
         });
 
         markers.addLayer(marker);
+
+        return {
+          name,
+          coords,
+          timezone: 'Asia/Singapore', // todo
+        };
       });
 
       this.map.addLayer(markers);
     });
   }
 
+  closeDetail(): void {
+    this.showDetail = false;
+    this.detailData = null;
+  }
+
+  handleSearchCity(targetCity: string): void {
+    const {name, coords} = this.getCityCoords(targetCity); // todo 考虑空值
+    this.fetchEnergyData(name, coords);
+
+    this.map.setView(coords, 13);
+
+    this.coordinates = coords;
+    this.locationName = name;
+    this.showOverview = true;
+  }
+
   private fetchEnergyData(name: string, coords: L.LatLngTuple): void {
     const [latitude, longitude] = coords;
     const timezone = 'Asia/Singapore'; // todo
-    const date = new Date().toISOString().split('T')[0]; // todo 
-
+    const date = new Date().toISOString().split('T')[0]; // todo
+    // todo loading效果
     this.energyService
       .getEnergy({ latitude, longitude, timezone, date })
       .subscribe((data) => {
-        console.log(`Energy data for ${name}:`, data);
+        this.detailData = data;
       });
+  }
+
+  private getCityCoords(name: string): CityInfo {
+    return this.cities.filter(
+      (city) => city.name.toLowerCase() === name.toLowerCase()
+    )[0];
   }
 }

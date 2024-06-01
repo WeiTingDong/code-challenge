@@ -1,0 +1,23 @@
+.detail-panel {
+    &-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1000;
+        background-color: #FFF; // todo
+    }
+
+    &-item {
+        background-color: #2a873757; // todo
+
+        &-lg {
+            height: 10rem;
+            background-color: #0000ff52;
+        }
+    }
+        
+}
+
+.square {
+    aspect-ratio: 1 / 1;
+  }

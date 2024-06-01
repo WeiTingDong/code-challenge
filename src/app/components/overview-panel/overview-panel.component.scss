@@ -1,0 +1,13 @@
+.overview-panel {
+    &-container {
+        position: fixed;
+        top: 50%;
+        right: 50%;
+        z-index: 1000;
+        transform: translate(50%, -50%);
+        background-color: #FFF; // todo
+        width: 80rem; // todo @media
+        height: 70%;
+    }
+
+}

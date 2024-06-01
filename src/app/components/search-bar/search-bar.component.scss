@@ -1,0 +1,9 @@
+.search-bar {
+    &-container {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        z-index: 1000;
+        transform: translate(-50%);
+    }
+}

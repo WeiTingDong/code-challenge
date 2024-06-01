@@ -1,0 +1,30 @@
+$border-large: 25px;
+$blur-level: 6px;
+
+@mixin light-block {
+    color: #FFF;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur($blur-level);
+    border-radius: $border-large;
+}
+
+@mixin dark-block {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: $border-large;
+}
+
+@mixin align-center {
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+@mixin justify-center {
+    left: 50%;
+    transform: translate(-50%);
+}
+
+@mixin center {
+    top: 50%;
+    left: 50%;
+    transform: translate(50%, -50%);
+}

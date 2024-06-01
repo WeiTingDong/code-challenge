@@ -1,4 +1,4 @@
 <div class="search-bar-container">
-    <input type="text" #searchBox placeholder="Search..." [(ngModel)]="inputVal"/>
+    <input type="text" #searchBox placeholder="Search..." [(ngModel)]="inputVal" (keyup.enter)="handleSearch()" />
     <button (click)="handleSearch()">Search</button>
 </div>

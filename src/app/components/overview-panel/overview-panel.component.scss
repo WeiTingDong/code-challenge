@@ -1,23 +1,44 @@
+@import "../../../styles/mixin.scss";
+
 .overview-panel {
     &-container {
         position: fixed;
         top: 0;
         right: 0;
         z-index: 1000;
-        background-color: #FFF; // todo
+
+        width: 25rem;
+
+        @media (max-width: 1200px) {
+            width: 25rem;
+        }
+        
+        @media (max-width: 768px) {
+            // todo 移动端样式
+            @include justify-center;
+            width: 30rem;
+            top: 5rem;
+        }
     }
 
     &-item {
-        background-color: #2a873757; // todo
+        @include light-block;
 
-        &-lg {
-            height: 10rem;
-            background-color: #0000ff52;
+        height: 8rem;
+        margin: 1rem;
+    }
+
+    &-item-lg {
+        @include light-block;
+        border-radius: 15px;
+        height: 9rem;
+
+        @media (max-width: 768px) {
+            height: 12rem;
         }
     }
-        
 }
 
-.square {
-    aspect-ratio: 1 / 1;
-  }
+// .square {
+//     aspect-ratio: 1 / 1;
+// }

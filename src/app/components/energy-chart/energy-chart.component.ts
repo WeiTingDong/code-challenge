@@ -64,7 +64,6 @@ export class EnergyChartComponent {
     const option = {
       animation: false,
       title: {
-        text: 'Direct Radiation',
         left: 'center',
         textStyle: {
           color: '#ffffff',
@@ -104,7 +103,6 @@ export class EnergyChartComponent {
       },
       series: [
         {
-          name: 'Direct Radiation',
           type: 'line',
           smooth: true,
           data: yData,

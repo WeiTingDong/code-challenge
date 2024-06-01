@@ -1,9 +1,16 @@
-<div class="overview-panel-container col-md-4 col-10 col-lg-3">
-    <div class="row justify-content-between">
-        <div class="overview-panel-item col-md-5 col-4 square">{{locationName}}</div>
-        <div class="overview-panel-item col-md-5 col-4 square">2</div>
+<div class="overview-panel-container">
+    <div class="row justify-content-around gradient-border">
+        <div class="overview-panel-item col-md-5 col-5 ">
+            <p>Assets</p>
+        </div>
+        <div class="overview-panel-item col-md-5 col-5">
+            <p>Today's performance</p>
+        </div>
     </div>
-    <div class="row">
-        <app-energy-chart [xData]="timeList" [yData]="radiationList"/>
+    <div class="row justify-content-around">
+        <div class="overview-panel-item-lg col-md-11">
+            <span>Daily Energy Generated</span>
+            <app-energy-chart [xData]="timeList" [yData]="radiationList"/>
+        </div>
     </div>
 </div>

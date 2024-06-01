@@ -1,9 +1,77 @@
+@import "../../../styles/mixin.scss";
+@import "../../../styles/device.scss";
+
+$input-width: 20rem;
+$input-height: 30px;
+$container-width: 30rem;
+$container-height: 40px;
+$placeholder-color: #FFF;
+
 .search-bar {
     &-container {
+        @include light-block;
+        width: $container-width;
+        height: $container-height;
+        margin-top: 1rem;
+
         position: fixed;
         top: 0;
         left: 50%;
         z-index: 1000;
         transform: translate(-50%);
     }
+}
+
+.search-input-set {
+    position: relative;
+    width: $input-width;
+    margin: 5px;
+
+    svg {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+
+        cursor: pointer;
+    }
+}
+
+input {
+    @include dark-block;
+
+    width: $input-width;
+    height: $input-height;
+    padding: 5px 1rem;
+    color: #FFF;
+
+    border: none;
+    border-radius: 2rem;
+
+    &:focus {
+        border: none;
+        outline: none;
+    }
+}
+
+input::placeholder {
+    color: $placeholder-color;
+    opacity: 0.5;
+}
+
+/* Chrome, Safari, Opera */
+input::-webkit-input-placeholder {
+    color: $placeholder-color;
+    opacity: 0.5;
+}
+
+/* Firefox < 19 */
+input:-moz-placeholder {
+    color: $placeholder-color;
+    opacity: 0.5;
+}
+
+/* IE 10+ */
+input:-ms-input-placeholder {
+    color: $placeholder-color;
+    opacity: 0.5;
 }

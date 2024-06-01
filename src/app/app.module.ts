@@ -13,6 +13,9 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { EnergyChartComponent } from './components/energy-chart/energy-chart.component';
 import { MinimapComponent } from './components/mini-map/mini-map.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CloseBtnComponent } from './components/close-btn/close-btn.component';
+
+import { ParseLocationPipe } from './pipes/location.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     EnergyChartComponent,
     MinimapComponent,
     DashboardComponent,
+    CloseBtnComponent,
+    ParseLocationPipe,
   ],
   imports: [BrowserModule, FormsModule],
   providers: [provideHttpClient(withInterceptorsFromDi())],

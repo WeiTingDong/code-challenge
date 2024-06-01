@@ -1,13 +1,116 @@
+@import "../../../styles/mixin.scss";
+@import "../../../styles/device.scss";
+
+$container-width: 60rem;
+$left-width: 10rem;
+$right-width: 50rem;
+
+@mixin item-style {
+    @include dark-block;
+    margin-bottom: 1rem;
+    height: 12rem;
+
+    @media (max-width: $mobile-screen) {
+        width: 20rem;
+    }
+}
+
 .detail-panel {
+    @include light-block;
+    height: 100%;
+
+    display: flex;
+    flex-wrap: nowrap;
+
     &-container {
         position: fixed;
         top: 50%;
         right: 50%;
         z-index: 1000;
         transform: translate(50%, -50%);
-        background-color: #FFF; // todo
-        width: 80rem; // todo @media
+        width: $container-width; // todo @media
         height: 70%;
+
+        max-height: 35rem;
+
+        @media (max-width: $external-screen) {
+            height: 50%;
+        }
+
+        @media (max-width: $pc-screen) {
+            height: 70%;
+        }
+
+        @media (max-width: $mobile-screen) {
+            width: 90%;
+            overflow: hidden;
+        }
     }
 
+    &-left {
+        @include dark-block;
+        border-radius: 25px 0 0 25px;
+        width: $left-width;
+        padding: 1rem;
+    }
+
+    &-right {
+        flex-shrink: 0;
+
+        width: $right-width;
+        border-radius: 0 25px 25px 0;
+        padding: 1rem;
+
+        @media (max-width: $mobile-screen) {
+            overflow-y: scroll;
+        }
+    }
+
+    &-items-set {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        @media (max-width: $mobile-screen) {
+            width: 19rem;
+            flex-wrap: wrap;
+        }
+    }
+
+    .detail-item {
+        &-asset {
+            @include item-style;
+            width: 46%;
+            // height: 40%;
+        }
+
+        &-performance {
+            @include item-style;
+            width: 25%;
+        }
+
+        &-minimap {
+            @include item-style;
+            position: relative;
+            width: 25%;
+            overflow: hidden;
+
+            &-location {
+                position: absolute;
+                left: 1rem;
+                bottom: 1rem;
+                z-index: 1000;
+            }
+        }
+
+        &-generation {
+            @include item-style;
+            width: 25%
+        }
+
+        &-irradiation {
+            @include item-style;
+            width: 73%
+        }
+    }
 }

@@ -1,3 +1,5 @@
+@import "./styles/device.scss";
+
 html,
 body {
   height: 100%;
@@ -19,7 +21,7 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $mobile-screen) {
   html {
     font-size: 13px;
   }

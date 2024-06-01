@@ -1,6 +1,24 @@
 <div class="detail-panel-container">
-    {{locationName}}
-    <button (click)="handleClose()">close</button>
-    <app-energy-chart [xData]="timeList" [yData]="radiationList"/>
-    <app-mini-map [coords]="coordinates"/>
+    <app-close-btn (close)="handleClose()" />
+    <div class="detail-panel">
+        <div class="detail-panel-left">
+            <app-dashboard />
+        </div>
+        <div class="detail-panel-right">
+            <p>{{locationName}}</p>
+            <div class="detail-panel-items-set">
+                <div class="detail-item-asset">asset</div>
+                <div class="detail-item-performance">performance</div>
+                <div class="detail-item-minimap">
+                    <app-mini-map [coords]="coordinates" />
+                    <span class="detail-item-minimap-location">Location<br />{{coordinates | parseLocation}}</span>
+                </div>
+                <div class="detail-item-generation">generation</div>
+                <div class="detail-item-irradiation">
+                    xxxxx
+                    <app-energy-chart [xData]="timeList" [yData]="radiationList" />
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,4 +1,5 @@
 @import "../../../styles/mixin.scss";
+@import "../../../styles/device.scss";
 
 .overview-panel {
     &-container {
@@ -13,7 +14,7 @@
             width: 25rem;
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: $mobile-screen) {
             // todo 移动端样式
             @include justify-center;
             width: 30rem;
@@ -33,7 +34,7 @@
         border-radius: 15px;
         height: 9rem;
 
-        @media (max-width: 768px) {
+        @media (max-width: $mobile-screen) {
             height: 12rem;
         }
     }

@@ -24,8 +24,8 @@ export class AppComponent {
   locationName: string = '';
   coordinates: number[] = [];
   detailData: any; // todo
-  showDetail: boolean = false;
-  showOverview: boolean = false;
+  showDetail: boolean = true; // todo 别忘了改
+  showOverview: boolean = true;
 
   constructor(
     private locationService: LocationService,

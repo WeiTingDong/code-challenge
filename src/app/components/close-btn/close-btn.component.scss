@@ -1,0 +1,33 @@
+.close-shape{  
+    position: absolute;  
+    top: 1rem;
+    right: 1rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    background: rgba(255, 255, 255, 0.4);  // todo
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+  }  
+    
+  .close-shape::before,  
+  .close-shape::after {  
+    content: '';  
+    position: absolute;  
+    width: 50%;
+    height: 1px;
+    background-color: #FFF;
+    top: 50%;
+    transform-origin: center; 
+  }  
+    
+  .close-shape::before {  
+    transform: rotate(45deg);
+  }  
+    
+  .close-shape::after {  
+    transform: rotate(-45deg);
+  }

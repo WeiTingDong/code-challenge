@@ -11,6 +11,8 @@ import { DetailPanelComponent } from './components/detail-panel/detail-panel.com
 import { OverviewPanelComponent } from './components/overview-panel/overview-panel.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { EnergyChartComponent } from './components/energy-chart/energy-chart.component';
+import { MinimapComponent } from './components/mini-map/mini-map.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { EnergyChartComponent } from './components/energy-chart/energy-chart.com
     SearchBarComponent,
     OverviewPanelComponent,
     EnergyChartComponent,
+    MinimapComponent,
+    DashboardComponent,
   ],
   imports: [BrowserModule, FormsModule],
   providers: [provideHttpClient(withInterceptorsFromDi())],

@@ -38,11 +38,14 @@ export class AppComponent {
   }
 
   private initMap(): void {
-    this.map = L.map('map').setView([1.3521, 103.8198], 5); // todo
+    this.map = L.map('map', {
+      zoomControl: false,
+      attributionControl: false,
+    }).setView([1.3521, 103.8198], 5); // todo
 
     L.tileLayer(environment.tileLayerUrl, {
       minZoom: 2,
-      attribution: '&copy; lovely frog code challenge',
+      // attribution: '&copy; lovely frog code challenge',
     }).addTo(this.map);
   }
 
@@ -82,7 +85,7 @@ export class AppComponent {
   }
 
   handleSearchCity(targetCity: string): void {
-    const {name, coords} = this.getCityCoords(targetCity); // todo 考虑空值
+    const { name, coords } = this.getCityCoords(targetCity); // todo 考虑空值
     this.fetchEnergyData(name, coords);
 
     this.map.setView(coords, 13);

@@ -35,8 +35,13 @@
                     {{ 'generationTitle' | translate}}
                 </div>
                 <div class="detail-item-irradiation detail-item-common">
-                    {{ 'irradTimeseries' | translate}}
-                    <app-energy-chart [xData]="timeList" [yData]="radiationList" chartHeight="220px"/>
+                    {{ 'irradTimeseries' | translate }}
+                    <ng-container *ngIf="!loading; else loadingTemplate">
+                        <app-energy-chart [xData]="timeList" [yData]="radiationList" chartHeight="220px" />
+                    </ng-container>
+                    <ng-template #loadingTemplate>
+                        <app-loading />
+                    </ng-template>
                 </div>
             </div>
         </div>

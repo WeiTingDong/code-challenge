@@ -14,6 +14,11 @@
     </div>
     <div class="overview-panel-item-lg">
         <span>{{ 'dailyEnergy' | translate}}</span>
-        <app-energy-chart [xData]="timeList | parseDate" [yData]="radiationList" />
+        <ng-container *ngIf="!loading; else loadingTemplate">
+            <app-energy-chart [xData]="timeList | parseDate" [yData]="radiationList" />
+        </ng-container>
+        <ng-template #loadingTemplate>
+            <app-loading />
+        </ng-template>
     </div>
 </div>

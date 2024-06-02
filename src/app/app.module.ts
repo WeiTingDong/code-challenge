@@ -22,6 +22,7 @@ import { AutoCompleteComponent } from './components/auto-complete/auto-complete.
 import { CloseBtnComponent } from './components/close-btn/close-btn.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EnergyChartComponent } from './components/energy-chart/energy-chart.component';
+import { LoadingComponent } from './components/loading/loading.component';
 import { MinimapComponent } from './components/mini-map/mini-map.component';
 import { PerformanceInfoComponent } from './components/detail-panel/performance-info/performance-info.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
@@ -51,6 +52,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CloseBtnComponent,
     DashboardComponent,
     EnergyChartComponent,
+    LoadingComponent,
     MinimapComponent,
     PerformanceInfoComponent,
     SearchBarComponent,

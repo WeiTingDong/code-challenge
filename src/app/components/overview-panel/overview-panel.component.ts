@@ -10,12 +10,12 @@ export class OverviewPanelComponent {
   @Input() locationName: string;
   @Input() coordinates: [number, number];
   @Input() chartData: EnergyResponse;
+  @Input() loading: boolean = false;
 
   radiationList: number[];
   timeList: string[];
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes, 'overview panel');
     const data = changes?.chartData?.currentValue?.hourly;
     if (data) {
       this.radiationList = data.direct_radiation;

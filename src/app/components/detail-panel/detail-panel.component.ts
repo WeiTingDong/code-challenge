@@ -16,6 +16,7 @@ export class DetailPanelComponent {
   @Input() locationName: string;
   @Input() coordinates: [number, number];
   @Input() chartData: EnergyResponse;
+  @Input() loading: boolean = false;
 
   @Output() closePanel = new EventEmitter<void>();
 

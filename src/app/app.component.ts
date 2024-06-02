@@ -32,6 +32,9 @@ export class AppComponent {
   showDetail: boolean = false;
   showOverview: boolean = false;
 
+  isLoadingEnergy: boolean = false;
+  isLoadingLocation: boolean = false;
+
   constructor(
     private translate: TranslateService,
     private locationService: LocationService,
@@ -61,32 +64,40 @@ export class AppComponent {
   }
 
   private fetchLocationData(): void {
-    this.locationService.getLocationList().subscribe((data) => {
-      const markers = (L as any).markerClusterGroup();
+    this.isLoadingLocation = true;
+    this.locationService.getLocationList().subscribe({
+      next: (data) => {
+        const markers = (L as any).markerClusterGroup();
 
-      this.cities = data?.area_metadata?.map((area) => {
-        const { name, label_location } = area;
-        const coords: L.LatLngTuple = [
-          label_location.latitude,
-          label_location.longitude,
-        ];
-        const marker = L.marker(coords).on('click', () => {
-          this.fetchEnergyData(coords);
-          this.coordinates = coords;
-          this.locationName = name;
-          this.showDetail = true;
+        this.cities = data?.area_metadata?.map((area) => {
+          const { name, label_location } = area;
+          const coords: L.LatLngTuple = [
+            label_location.latitude,
+            label_location.longitude,
+          ];
+          const marker = L.marker(coords).on('click', () => {
+            this.fetchEnergyData(coords);
+            this.coordinates = coords;
+            this.locationName = name;
+            this.showDetail = true;
+          });
+
+          markers.addLayer(marker);
+
+          return {
+            name,
+            coords,
+            timezone,
+          };
         });
 
-        markers.addLayer(marker);
-
-        return {
-          name,
-          coords,
-          timezone,
-        };
-      });
-
-      this.map.addLayer(markers);
+        this.map.addLayer(markers);
+        this.isLoadingLocation = false;
+      },
+      error: (error) => {
+        console.error('Fetch failed: ', error);
+        this.isLoadingLocation = false;
+      },
     });
   }
 
@@ -109,11 +120,19 @@ export class AppComponent {
   private fetchEnergyData(coords: L.LatLngTuple): void {
     const [latitude, longitude] = coords;
     const date = new Date().toISOString().split('T')[0]; // todo
-    // todo loading效果
+
+    this.isLoadingEnergy = true;
     this.energyService
       .getEnergy({ latitude, longitude, timezone, date })
-      .subscribe((data) => {
-        this.detailData = data;
+      .subscribe({
+        next: (data) => {
+          this.detailData = data;
+          this.isLoadingEnergy = false;
+        },
+        error: (error) => {
+          console.error('Fetch failed: ', error);
+          this.isLoadingEnergy = false;
+        },
       });
   }
 

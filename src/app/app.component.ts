@@ -107,14 +107,17 @@ export class AppComponent {
   }
 
   handleSearchCity(targetCity: string): void {
-    const { name, coords } = this.getCityCoords(targetCity); // todo 考虑空值
-    this.fetchEnergyData(coords);
-
-    this.map.setView(coords, searchScale);
-
-    this.coordinates = coords;
-    this.locationName = name;
-    this.showOverview = true;
+    try {
+      const { name, coords } = this.getCityCoords(targetCity); // todo 考虑空值
+      this.fetchEnergyData(coords);
+      this.map.setView(coords, searchScale);
+  
+      this.coordinates = coords;
+      this.locationName = name;
+      this.showOverview = true;
+    } catch {
+      console.error("Fail to find location")
+    }
   }
 
   private fetchEnergyData(coords: L.LatLngTuple): void {

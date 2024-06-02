@@ -1,38 +1,54 @@
 @import "../../../styles/mixin.scss";
 @import "../../../styles/device.scss";
 
+$item-padding: 0.5rem 0.8rem;
+$item-padding-mobile: 0.8rem 1rem;
+
+$panel-width: 25rem;
+$panel-width-mobile: 30rem;
+
+$position-top: 4rem;
+$position-top-mobile: 5rem;
+$position-right: 2rem;
+
 .overview-panel {
     &-container {
         position: fixed;
-        top: 3rem;
-        right: 2rem;
+        top: $position-top;
+        right: $position-right;
         z-index: 1000;
 
-        width: 25rem;
+        width: $panel-width;
 
         @media (max-width: 1200px) {
-            width: 25rem;
+            width: $panel-width;
         }
-        
+
         @media (max-width: $mobile-screen) {
-            // todo 移动端样式
             @include justify-center;
-            width: 30rem;
+            width: $panel-width-mobile;
             top: 5rem;
         }
     }
 
     &-item {
         @include light-block;
-
+        width: 48%;
         height: 8rem;
-        margin: 1rem;
+
+        padding: $item-padding;
+        margin-bottom: 1rem;
+
+        @media (max-width: $mobile-screen) {
+            padding: $item-padding-mobile;
+        }
     }
 
     &-item-lg {
         @include light-block;
         border-radius: 15px;
         height: 9rem;
+        padding: $item-padding;
 
         @media (max-width: $mobile-screen) {
             height: 12rem;
@@ -40,6 +56,22 @@
     }
 }
 
-// .square {
-//     aspect-ratio: 1 / 1;
-// }
+.overview-items-set {
+    display: flex;
+    justify-content: space-between;
+}
+
+.unit {
+    @include unit-style
+}
+
+.performance {
+    &-title {
+        margin-bottom: 0;
+    }
+
+    &-subtitle {
+        @include unit-style;
+        margin-bottom: 0;
+    }
+}

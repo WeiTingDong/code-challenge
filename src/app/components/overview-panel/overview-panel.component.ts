@@ -18,7 +18,7 @@ export class OverviewPanelComponent {
     const data = changes?.chartData?.currentValue?.hourly;
     if (data) {
       this.radiationList = data.direct_radiation;
-      this.timeList = data.time.map((t) => t.split('T')[1]);
+      this.timeList = data.time;
     }
   }
 }

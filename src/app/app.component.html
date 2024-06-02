@@ -3,4 +3,4 @@
 <app-overview-panel *ngIf="showOverview" [chartData]="detailData" [coordinates]="coordinates"
     [locationName]="locationName" />
 <app-detail-panel *ngIf="showDetail" [chartData]="detailData" [coordinates]="coordinates" [locationName]="locationName"
-    (closePanel)="closeDetail()"/>
+    (closePanel)="closeDetail()" />

@@ -3,7 +3,8 @@
         <app-gear-icon />
         <app-hash-icon />
         <div class="search-input-set">
-            <input type="text" #searchBox placeholder="Search" [(ngModel)]="inputVal" (keyup.enter)="handleSearch()" />
+            <input type="text" #searchBox [placeholder]="'search' | translate" [(ngModel)]="inputVal"
+                (keyup.enter)="handleSearch()" />
             <app-search-icon class="search-icon" (click)="handleSearch()" />
         </div>
         <app-bell-icon />

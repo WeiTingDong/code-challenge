@@ -1,0 +1,18 @@
+{
+    "Assets": "Assets",
+    "Capacity": "Capacity",
+    "performanceTitle": "Today's Performance",
+    "generationTitle": "Today's Generation",
+    "dailyEnergy": "Daily Energy Generated",
+    "update": "Last Updated",
+    "Dashboard": "Dashboard",
+    "performanceRatio": "Performance Ratio",
+    "irradTimeseries": "Irradiation Timeseries",
+    "online": "Days Online",
+    "days": "Days",
+    "irrad": "Irradiance",
+    "matrix": "Plant Matrix",
+    "efficiency": "Inverter Efficiency",
+    "Location": "Location",
+    "search": "Search"
+}

@@ -4,7 +4,15 @@ import { FormsModule } from '@angular/forms';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
+  HttpClient,
 } from '@angular/common/http';
+
+import {
+  TranslateModule,
+  TranslateLoader,
+  TranslateService,
+} from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
 import { DetailPanelComponent } from './components/detail-panel/detail-panel.component';
@@ -24,7 +32,13 @@ import { HashIconComponent } from './icons/hash-icon/hash-icon.component';
 import { SearchIconComponent } from './icons/search-icon/search-icon.component';
 import { UserIconComponent } from './icons/user-icon/user-icon.component';
 
+import { ParseDatePipe } from './pipes/parseDate.pipe';
+import { ParseLastDatePipe } from './pipes/lastDate.pipe';
 import { ParseLocationPipe } from './pipes/location.pipe';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -43,9 +57,21 @@ import { ParseLocationPipe } from './pipes/location.pipe';
     HashIconComponent,
     SearchIconComponent,
     UserIconComponent,
+    ParseDatePipe,
+    ParseLastDatePipe,
     ParseLocationPipe,
   ],
-  imports: [BrowserModule, FormsModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+  ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent],
 })

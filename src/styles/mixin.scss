@@ -28,3 +28,8 @@ $blur-level: 6px;
     left: 50%;
     transform: translate(50%, -50%);
 }
+
+@mixin unit-style {
+    font-size: 0.6rem;
+    font-weight: lighter;
+}

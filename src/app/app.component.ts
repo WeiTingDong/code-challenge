@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 
@@ -24,13 +25,27 @@ export class AppComponent {
   locationName: string = '';
   coordinates: number[] = [];
   detailData: any; // todo
-  showDetail: boolean = false;
-  showOverview: boolean = false;
+  showDetail: boolean = true;
+  showOverview: boolean = true;
 
   constructor(
+    private translate: TranslateService,
     private locationService: LocationService,
     private energyService: EnergyService
-  ) {}
+  ) {
+    this.translate.addLangs(['en', 'zh']);
+    this.translate.setDefaultLang('en');
+    
+    const browserLang = this.translate.getBrowserLang();
+    this.translate.use(browserLang.match(/en|zh/) ? browserLang : 'en');
+    // debug i18n
+    // const langToUse = browserLang.match(/en|zh/) ? browserLang : 'en';
+    // this.translate.use(langToUse).subscribe(() => {
+    //   console.log('Language initialized:', langToUse);
+    //   console.log('Assets translation:', this.translate.instant('assets'));
+    // });
+  }
+
 
   ngOnInit() {
     this.initMap();

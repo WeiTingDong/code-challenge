@@ -1,0 +1,18 @@
+{  
+    "Assets": "资产",  
+    "Capacity": "容量",  
+    "performanceTitle": "今日性能",  
+    "generationTitle": "今日发电量",  
+    "dailyEnergy": "每日发电量",  
+    "update": "最后更新时间",  
+    "Dashboard": "仪表板",  
+    "performanceRatio": "性能比率",  
+    "irradTimeseries": "辐照时间序列",  
+    "online": "在线天数",  
+    "days": "天数",  
+    "irrad": "辐照度",  
+    "matrix": "电厂矩阵",  
+    "efficiency": "逆变器效率",  
+    "Location": "位置",  
+    "search": "搜索"  
+}

@@ -1,16 +1,19 @@
 <div class="overview-panel-container">
-    <div class="row justify-content-around gradient-border">
-        <div class="overview-panel-item col-md-5 col-5 ">
-            <p>Assets</p>
+    <div class="overview-items-set gradient-border">
+        <div class="overview-panel-item">
+            <p>{{ 'Assets' | translate}}</p>
+            <p>--</p>
+            <p>--<span class="unit">MWp</span></p>
         </div>
-        <div class="overview-panel-item col-md-5 col-5">
-            <p>Today's performance</p>
+        <div class="overview-panel-item">
+            <p class="performance-title">{{ 'performanceTitle' | translate}}</p>
+            <p class="performance-subtitle">{{ 'update' | translate}} {{timeList | parseLastDate}}</p>
+            <p>--<span class="unit">MWh</span></p>
+            <p>--<span class="unit">MW</span></p>
         </div>
     </div>
-    <div class="row justify-content-around">
-        <div class="overview-panel-item-lg col-md-11">
-            <span>Daily Energy Generated</span>
-            <app-energy-chart [xData]="timeList" [yData]="radiationList"/>
-        </div>
+    <div class="overview-panel-item-lg">
+        <span>{{ 'dailyEnergy' | translate}}</span>
+        <app-energy-chart [xData]="timeList | parseDate" [yData]="radiationList" />
     </div>
 </div>

@@ -3,36 +3,48 @@
 
 $input-width: 20rem;
 $input-height: 30px;
-$container-width: 30rem;
+$container-width: 32rem;
 $container-height: 40px;
 $placeholder-color: #FFF;
 
 .search-bar {
     &-container {
         @include light-block;
-        width: $container-width;
-        height: $container-height;
-        margin-top: 1rem;
-
         position: fixed;
         top: 0;
         left: 50%;
         z-index: 1000;
         transform: translate(-50%);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        width: $container-width;
+        height: $container-height;
+        margin-top: 1rem;
+        padding: 0 10px;
+
+        @media (max-width: $mobile-screen) {
+            padding: 0 5px;
+        }
     }
 }
 
 .search-input-set {
     position: relative;
     width: $input-width;
-    margin: 5px;
 
-    svg {
+   .search-icon {
         position: absolute;
-        top: 8px;
+        top: 0.1rem;
         right: 10px;
 
         cursor: pointer;
+
+        @media (max-width: $mobile-screen) {
+            top: 0.4rem;
+        }
     }
 }
 

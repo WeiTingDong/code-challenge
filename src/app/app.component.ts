@@ -25,7 +25,7 @@ export class AppComponent {
   coordinates: number[] = [];
   detailData: any; // todo
   showDetail: boolean = false;
-  showOverview: boolean = true;
+  showOverview: boolean = false;
 
   constructor(
     private locationService: LocationService,

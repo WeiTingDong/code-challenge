@@ -1,0 +1,11 @@
+@import "../detail-panel.component.scss";
+
+.performance-info {
+    &-name {
+        @include item-name-style
+    }
+
+    &-value {
+        @include item-value-style
+    }
+}

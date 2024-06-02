@@ -6,7 +6,6 @@ import 'leaflet.markercluster';
 import { LocationService } from '@services/location.service';
 import { environment } from '@environments/environment';
 import { EnergyService } from '@services/energy.service';
-// import { SearchBarComponent } from '@components/search-bar/search-bar.component';
 
 interface CityInfo {
   name: string;
@@ -25,8 +24,8 @@ export class AppComponent {
   locationName: string = '';
   coordinates: number[] = [];
   detailData: any; // todo
-  showDetail: boolean = true;
-  showOverview: boolean = true;
+  showDetail: boolean = false;
+  showOverview: boolean = false;
 
   constructor(
     private translate: TranslateService,

@@ -1,0 +1,28 @@
+@import "../detail-panel.component.scss";
+
+$item-width: 10rem;
+$item-width-mobile: 8rem;
+
+.asset-info {
+    width: $item-width;
+
+    @media (max-width: $mobile-screen) {
+        width: $item-width-mobile;
+    }
+
+    &-name {
+        @include item-name-style
+    }
+
+    &-value {
+        @include item-value-style
+    }
+
+    &-subtitle {
+        margin-bottom: 0;
+    }
+}
+
+.unit {
+    @include unit-style;
+}

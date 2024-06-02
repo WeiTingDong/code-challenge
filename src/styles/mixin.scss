@@ -26,7 +26,12 @@ $blur-level: 6px;
 @mixin center {
     top: 50%;
     left: 50%;
-    transform: translate(50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+@mixin bold-title {
+    font-size: 1.2rem;
+    font-weight: bolder;
 }
 
 @mixin unit-style {

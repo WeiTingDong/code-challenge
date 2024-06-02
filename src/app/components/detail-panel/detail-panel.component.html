@@ -5,23 +5,36 @@
             <app-dashboard />
         </div>
         <div class="detail-panel-right">
-            <p>{{locationName}}</p>
+            <p class="bold-title">{{locationName}}</p>
             <div class="detail-panel-items-set">
-                <div class="detail-item-asset">{{ 'Assets' | translate}}</div>
-                <div class="detail-item-performance">
-                    {{ 'performanceTitle' | translate}}
-                    {{ 'performanceRatio' | translate}}
-                    {{ 'efficiency' | translate}}
+                <div class="detail-item-asset detail-item-common">
+                    <div class="detail-item-title">
+                        {{ 'Assets' | translate}}
+                    </div>
+                    <div class="asset-set">
+                        <app-asset-info [name]="'Capacity' | translate" value="--" unit="MWp" />
+                        <app-asset-info [name]="'irrad' | translate" value="--" unit="kW/m²" />
+                        <app-asset-info [name]="'matrix' | translate" value="--" subtitle="INV X SCB" />
+                        <app-asset-info [name]="'online' | translate" value="--" [unit]="'days' | translate" />
+                    </div>
+                </div>
+                <div class="detail-item-performance detail-item-common">
+                    <div class="detail-item-title">
+                        {{ 'performanceTitle' | translate}}
+                    </div>
+                    <app-performance-info performance="--" inverter="--" />
                 </div>
                 <div class="detail-item-minimap">
                     <app-mini-map [coords]="coordinates" />
                     <span class="detail-item-minimap-location">
-                        {{ 'Location' | translate}}
+                        <span class="unit">{{ 'Location' | translate}}</span>
                         <br />
                         {{coordinates | parseLocation}}</span>
                 </div>
-                <div class="detail-item-generation">{{ 'generationTitle' | translate}}</div>
-                <div class="detail-item-irradiation">
+                <div class="detail-item-generation detail-item-common detail-item-title ">
+                    {{ 'generationTitle' | translate}}
+                </div>
+                <div class="detail-item-irradiation detail-item-common">
                     {{ 'irradTimeseries' | translate}}
                     <app-energy-chart [xData]="timeList" [yData]="radiationList" />
                 </div>

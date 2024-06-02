@@ -1,6 +1,6 @@
-<app-search-bar (searchCity)="handleSearchCity($event)" />
+<app-search-bar (searchCity)="handleSearchCity($event)" [cityList]="cities" />
 <div id="map" style="height: 100vh; width: 100%;"></div>
 <app-overview-panel *ngIf="showOverview" [chartData]="detailData" [coordinates]="coordinates"
     [locationName]="locationName" />
 <app-detail-panel *ngIf="showDetail" [chartData]="detailData" [coordinates]="coordinates" [locationName]="locationName"
-    (closePanel)="closeDetail()" />
+    (closePanel)="closeDetail()"/>

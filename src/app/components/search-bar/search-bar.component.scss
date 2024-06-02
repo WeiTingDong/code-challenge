@@ -8,13 +8,14 @@ $container-height: 40px;
 $placeholder-color: #FFF;
 
 .search-bar {
+    @include justify-center;
+
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+
     &-container {
         @include light-block;
-        position: fixed;
-        top: 0;
-        left: 50%;
-        z-index: 1000;
-        transform: translate(-50%);
 
         display: flex;
         align-items: center;
@@ -28,6 +29,18 @@ $placeholder-color: #FFF;
         @media (max-width: $mobile-screen) {
             padding: 0 5px;
         }
+    }
+
+    &-suggestions {
+        @include light-block;
+        @include justify-center;
+
+        position: absolute;
+        border-radius: 0 0 10px 10px;
+        width: 80%;
+
+        margin: 0;
+        padding: 0;
     }
 }
 

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-search-bar',
@@ -6,11 +6,12 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrl: './search-bar.component.scss',
 })
 export class SearchBarComponent {
+  @Input() cityList: any[]; // todo 最好直接用状态管理
   @Output() searchCity = new EventEmitter<String>();
 
   inputVal: string; // todo 限长
 
   handleSearch() {
-    this.searchCity.emit(this.inputVal)
+    this.searchCity.emit(this.inputVal);
   }
 }

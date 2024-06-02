@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { DetailPanelComponent } from './components/detail-panel/detail-panel.component';
 import { OverviewPanelComponent } from './components/overview-panel/overview-panel.component';
 
+import { AutoCompleteComponent } from './components/auto-complete/auto-complete.component';
 import { CloseBtnComponent } from './components/close-btn/close-btn.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EnergyChartComponent } from './components/energy-chart/energy-chart.component';
@@ -30,11 +31,12 @@ import { ParseLocationPipe } from './pipes/location.pipe';
     AppComponent,
     DetailPanelComponent,
     OverviewPanelComponent,
-    SearchBarComponent,
+    AutoCompleteComponent,
+    CloseBtnComponent,
+    DashboardComponent,
     EnergyChartComponent,
     MinimapComponent,
-    DashboardComponent,
-    CloseBtnComponent,
+    SearchBarComponent,
     BellIconComponent,
     GearIconComponent,
     GridIconComponent,

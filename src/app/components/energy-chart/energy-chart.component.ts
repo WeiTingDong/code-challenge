@@ -21,7 +21,6 @@ export class EnergyChartComponent {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.xData && this.xData) {
-      console.log('update', this.xData, this.yData);
       this.updateChart();
     }
   }

@@ -1,11 +1,16 @@
-<div class="search-bar-container">
-    <app-gear-icon />
-    <app-hash-icon />
-    <div class="search-input-set">
-        <input type="text" #searchBox placeholder="Search" [(ngModel)]="inputVal" (keyup.enter)="handleSearch()" />
-        <app-search-icon class="search-icon" (click)="handleSearch()"/>
+<div class="search-bar">
+    <div class="search-bar-container">
+        <app-gear-icon />
+        <app-hash-icon />
+        <div class="search-input-set">
+            <input type="text" #searchBox placeholder="Search" [(ngModel)]="inputVal" (keyup.enter)="handleSearch()" />
+            <app-search-icon class="search-icon" (click)="handleSearch()" />
+        </div>
+        <app-bell-icon />
+        <app-grid-icon />
+        <app-user-icon />
     </div>
-    <app-bell-icon />
-    <app-grid-icon />
-    <app-user-icon />
+    <div class="search-bar-suggestions">
+        <app-auto-complete [wordList]="cityList" [(inputVal)]="inputVal" (select)="handleSearch()" />
+    </div>
 </div>

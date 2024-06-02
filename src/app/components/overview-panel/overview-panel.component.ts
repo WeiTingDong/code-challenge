@@ -1,4 +1,5 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
+import { EnergyResponse } from '@services/energy.service';
 
 @Component({
   selector: 'app-overview-panel',
@@ -8,7 +9,7 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 export class OverviewPanelComponent {
   @Input() locationName: string;
   @Input() coordinates: [number, number];
-  @Input() chartData: any; // todo
+  @Input() chartData: EnergyResponse;
 
   radiationList: number[];
   timeList: string[];

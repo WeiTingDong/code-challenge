@@ -4,7 +4,9 @@ import {
   ViewChild,
   ElementRef,
   SimpleChanges,
-  HostListener
+  HostListener,
+  AfterViewInit,
+  OnChanges
 } from '@angular/core';
 import * as echarts from 'echarts';
 
@@ -13,14 +15,23 @@ import * as echarts from 'echarts';
   templateUrl: './energy-chart.component.html',
   styleUrl: './energy-chart.component.scss',
 })
-export class EnergyChartComponent {
+export class EnergyChartComponent implements AfterViewInit, OnChanges {
+  @Input() chartHeight: string;
   @Input() xData: string[];
   @Input() yData: number[];
+
   @ViewChild('chartContainer', { static: false }) chartContainer: ElementRef;
   chartInstance: echarts.ECharts;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.xData && this.xData) {
+      this.updateChart();
+    }
+    if (changes.yData && this.yData) {
+      this.updateChart();
+    }
+    if (changes.chartHeight && this.chartHeight) {
+      this.updateChartHeight();
       this.updateChart();
     }
   }
@@ -41,15 +52,15 @@ export class EnergyChartComponent {
   initChart(): void {
     if (this.chartContainer && this.chartContainer.nativeElement) {
       this.chartInstance = echarts.init(this.chartContainer.nativeElement);
+      this.updateChartHeight();
       this.updateChart();
     }
   }
 
-  formatDate(dateString: string): string {
-    const date = new Date(dateString);
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${month}-${day}`;
+  updateChartHeight(): void {
+    if (this.chartContainer && this.chartHeight) {
+      this.chartContainer.nativeElement.style.height = this.chartHeight;
+    }
   }
 
   updateChart(): void {
@@ -79,10 +90,10 @@ export class EnergyChartComponent {
           color: '#ffffff',
         },
         axisLine: {
-          show: false, // 横轴线
+          show: false,
         },
         axisTick: {
-          show: false, // 刻度线
+          show: false,
         },
       },
       yAxis: {
@@ -91,13 +102,13 @@ export class EnergyChartComponent {
           color: '#ffffff',
         },
         axisLine: {
-          show: false, // 纵轴线
+          show: false,
         },
         axisTick: {
-          show: false, // 刻度线
+          show: false,
         },
         splitLine: {
-          show: false, // 分隔线
+          show: false,
         },
       },
       series: [
@@ -115,11 +126,12 @@ export class EnergyChartComponent {
             width: 2,
             color: 'rgba(0, 255, 233, 1)',
           },
-          symbol: 'none', // 数据点
+          symbol: 'none',
         },
       ],
     };
 
     this.chartInstance.setOption(option);
+    this.chartInstance.resize(); // 确保在更新图表后重新调整大小
   }
 }

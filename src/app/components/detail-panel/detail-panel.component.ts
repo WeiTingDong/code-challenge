@@ -5,6 +5,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
+import { EnergyResponse } from '@services/energy.service';
 
 @Component({
   selector: 'app-detail-panel',
@@ -14,7 +15,7 @@ import {
 export class DetailPanelComponent {
   @Input() locationName: string;
   @Input() coordinates: [number, number];
-  @Input() chartData: any; // todo
+  @Input() chartData: EnergyResponse;
 
   @Output() closePanel = new EventEmitter<void>();
 
@@ -22,7 +23,6 @@ export class DetailPanelComponent {
   timeList: string[];
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes, 'detial panel');
     const data = changes?.chartData?.currentValue?.hourly;
     if (data) {
       this.radiationList = data.direct_radiation;
@@ -33,5 +33,4 @@ export class DetailPanelComponent {
   handleClose(): void {
     this.closePanel.emit();
   }
-
 }

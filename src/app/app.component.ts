@@ -5,13 +5,18 @@ import 'leaflet.markercluster';
 
 import { LocationService } from '@services/location.service';
 import { environment } from '@environments/environment';
-import { EnergyService } from '@services/energy.service';
+import { EnergyService, EnergyResponse } from '@services/energy.service';
 
 interface CityInfo {
   name: string;
   coords: [number, number];
   timezone: string;
 }
+
+const timezone = 'Asia/Singapore';
+const originCenter = [1.3521, 103.8198] as L.LatLngTuple;
+const originScale = 5;
+const searchScale = 13;
 
 @Component({
   selector: 'app-root',
@@ -20,10 +25,10 @@ interface CityInfo {
 })
 export class AppComponent {
   map: L.Map;
-  cities: CityInfo[]; // todo
+  cities: CityInfo[];
   locationName: string = '';
   coordinates: number[] = [];
-  detailData: any; // todo
+  detailData: EnergyResponse;
   showDetail: boolean = false;
   showOverview: boolean = false;
 
@@ -34,17 +39,10 @@ export class AppComponent {
   ) {
     this.translate.addLangs(['en', 'zh']);
     this.translate.setDefaultLang('en');
-    
+
     const browserLang = this.translate.getBrowserLang();
     this.translate.use(browserLang.match(/en|zh/) ? browserLang : 'en');
-    // debug i18n
-    // const langToUse = browserLang.match(/en|zh/) ? browserLang : 'en';
-    // this.translate.use(langToUse).subscribe(() => {
-    //   console.log('Language initialized:', langToUse);
-    //   console.log('Assets translation:', this.translate.instant('assets'));
-    // });
   }
-
 
   ngOnInit() {
     this.initMap();
@@ -55,11 +53,10 @@ export class AppComponent {
     this.map = L.map('map', {
       zoomControl: false,
       attributionControl: false,
-    }).setView([1.3521, 103.8198], 5); // todo
+    }).setView(originCenter, originScale);
 
     L.tileLayer(environment.tileLayerUrl, {
       minZoom: 2,
-      // attribution: '&copy; lovely frog code challenge',
     }).addTo(this.map);
   }
 
@@ -74,7 +71,7 @@ export class AppComponent {
           label_location.longitude,
         ];
         const marker = L.marker(coords).on('click', () => {
-          this.fetchEnergyData(name, coords);
+          this.fetchEnergyData(coords);
           this.coordinates = coords;
           this.locationName = name;
           this.showDetail = true;
@@ -85,7 +82,7 @@ export class AppComponent {
         return {
           name,
           coords,
-          timezone: 'Asia/Singapore', // todo
+          timezone,
         };
       });
 
@@ -100,18 +97,17 @@ export class AppComponent {
 
   handleSearchCity(targetCity: string): void {
     const { name, coords } = this.getCityCoords(targetCity); // todo 考虑空值
-    this.fetchEnergyData(name, coords);
+    this.fetchEnergyData(coords);
 
-    this.map.setView(coords, 13);
+    this.map.setView(coords, searchScale);
 
     this.coordinates = coords;
     this.locationName = name;
     this.showOverview = true;
   }
 
-  private fetchEnergyData(name: string, coords: L.LatLngTuple): void {
+  private fetchEnergyData(coords: L.LatLngTuple): void {
     const [latitude, longitude] = coords;
-    const timezone = 'Asia/Singapore'; // todo
     const date = new Date().toISOString().split('T')[0]; // todo
     // todo loading效果
     this.energyService
@@ -121,7 +117,7 @@ export class AppComponent {
       });
   }
 
-  private getCityCoords(name: string): CityInfo {
+  private getCityCoords(name: string = ''): CityInfo {
     return this.cities.filter(
       (city) => city.name.toLowerCase() === name.toLowerCase()
     )[0];

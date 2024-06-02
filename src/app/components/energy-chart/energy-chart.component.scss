@@ -2,11 +2,12 @@
 
 .chart-container {
   width: 100%;
-  height: 12rem;
+  height: 12.6rem;
 
-  top: -2.5rem; //需要再检查一下
+  top: -3rem;
 
   @media (max-width: $mobile-screen) {
     height: 16rem;
+    min-width: 20rem;
 }
 }

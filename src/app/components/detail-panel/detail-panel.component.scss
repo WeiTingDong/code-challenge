@@ -128,7 +128,11 @@ $item-value-size: 1.6rem;
 
         &-irradiation {
             @include item-style;
-            width: 73%
+            width: 73%;
+
+            @media (max-width: $mobile-screen) {
+                height: 16rem;
+            }
         }
 
         &-common {

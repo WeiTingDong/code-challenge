@@ -1,0 +1,43 @@
+<p class="bold-title">{{locationName}}</p>
+<div class="efficiency-panel-items-set">
+    <div class="efficiency-item-asset efficiency-item-common">
+        <div class="efficiency-item-title">
+            {{ 'Assets' | translate}}
+        </div>
+        <div class="asset-set">
+            <app-asset-info [name]="'Capacity' | translate" value="--" unit="MWp" />
+            <app-asset-info [name]="'irrad' | translate" value="--" unit="kW/m²" />
+            <app-asset-info [name]="'matrix' | translate" value="--" subtitle="INV X SCB" />
+            <app-asset-info [name]="'online' | translate" value="--" [unit]="'days' | translate" />
+        </div>
+    </div>
+    <div class="efficiency-item-performance efficiency-item-common">
+        <div class="efficiency-item-title">
+            {{ 'performanceTitle' | translate}}
+        </div>
+        <app-performance-info performance="--" inverter="--" />
+    </div>
+    <div class="efficiency-item-minimap">
+        <app-mini-map [coords]="coordinates" />
+        <span class="efficiency-item-minimap-location">
+            <span class="unit">{{ 'Location' | translate}}</span>
+            <br />
+            {{coordinates | parseLocation}}</span>
+    </div>
+    <div class="efficiency-item-generation efficiency-item-common efficiency-item-title ">
+        {{ 'generationTitle' | translate}}
+    </div>
+    <div class="efficiency-item-irradiation efficiency-item-common">
+        {{ 'irradTimeseries' | translate }}
+        <ng-container *ngIf="!loading; else loadingTemplate">
+            <app-energy-chart
+                [xData]="timeList"
+                [yData]="radiationList"
+                chartHeight="220px"
+                [chartConfig]="chartConfig" />
+        </ng-container>
+        <ng-template #loadingTemplate>
+            <app-loading />
+        </ng-template>
+    </div>
+</div>

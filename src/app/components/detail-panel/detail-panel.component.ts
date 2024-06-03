@@ -6,6 +6,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { EnergyResponse } from '@services/energy.service';
+import { DashBoard } from '../dashboard/dashboard.enum';
 
 @Component({
   selector: 'app-detail-panel',
@@ -20,27 +21,20 @@ export class DetailPanelComponent {
 
   @Output() closePanel = new EventEmitter<void>();
 
-  radiationList: number[];
-  timeList: string[];
-
-  chartConfig = {
-    areaStyle: {
-      color: '#2fc7d5',
-    },
-    lineStyle: {
-      color: '#00dbda'
-    }
-  }
+  activeTab: DashBoard = DashBoard.EFFICIENCY;
+  DashBoard = DashBoard;
 
   ngOnChanges(changes: SimpleChanges): void {
-    const data = changes?.chartData?.currentValue?.hourly;
-    if (data) {
-      this.radiationList = data.direct_radiation;
-      this.timeList = data.time.map((t) => t.split('T')[1]);
+    if (changes.locationName) {
+      this.activeTab = DashBoard.EFFICIENCY;
     }
   }
 
   handleClose(): void {
     this.closePanel.emit();
+  }
+
+  handleTabChange(tab): void {
+    this.activeTab = tab;
   }
 }

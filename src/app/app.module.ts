@@ -17,14 +17,15 @@ import { AppComponent } from './app.component';
 import { DetailPanelComponent } from './components/detail-panel/detail-panel.component';
 import { OverviewPanelComponent } from './components/overview-panel/overview-panel.component';
 
-import { AssetInfoComponent } from './components/detail-panel/asset-info/asset-info.component';
+import { AssetInfoComponent } from './components/inverter-efficiency/asset-info/asset-info.component';
 import { AutoCompleteComponent } from './components/auto-complete/auto-complete.component';
 import { CloseBtnComponent } from './components/close-btn/close-btn.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EnergyChartComponent } from './components/energy-chart/energy-chart.component';
+import { InverterEfficiencyComponent } from './components/inverter-efficiency/inverter-efficiency.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MinimapComponent } from './components/mini-map/mini-map.component';
-import { PerformanceInfoComponent } from './components/detail-panel/performance-info/performance-info.component';
+import { PerformanceInfoComponent } from './components/inverter-efficiency/performance-info/performance-info.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 import { BellIconComponent } from './icons/bell-icon/bell-icon.component';
@@ -52,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CloseBtnComponent,
     DashboardComponent,
     EnergyChartComponent,
+    InverterEfficiencyComponent,
     LoadingComponent,
     MinimapComponent,
     PerformanceInfoComponent,

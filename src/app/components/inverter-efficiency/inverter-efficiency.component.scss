@@ -1,0 +1,65 @@
+@import "../detail-panel/detail-panel.component.scss";
+
+.efficiency-panel-items-set {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    @media (max-width: $mobile-screen) {
+        width: 19rem;
+        flex-wrap: wrap;
+    }
+}
+
+.efficiency-item {
+    &-asset {
+        @include item-style;
+        width: 46%;
+    }
+
+    &-performance {
+        @include item-style;
+        width: 25%;
+    }
+
+    &-minimap {
+        @include item-style;
+        position: relative;
+        width: 25%;
+        overflow: hidden;
+
+        &-location {
+            position: absolute;
+            left: 1rem;
+            bottom: 1rem;
+            z-index: 1000;
+        }
+    }
+
+    &-generation {
+        @include item-style;
+        width: 25%
+    }
+
+    &-irradiation {
+        @include item-style;
+        width: 73%;
+
+        @media (max-width: $mobile-screen) {
+            height: 16rem;
+        }
+    }
+
+    &-common {
+        padding: $item-padding;
+
+        @media (max-width: $mobile-screen) {
+            padding: $item-padding-mobile;
+        }
+    }
+
+    &-title {
+        font-size: $item-title-font;
+        line-height: 1rem;
+    }
+}

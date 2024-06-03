@@ -2,51 +2,22 @@
     <app-close-btn (close)="handleClose()" />
     <div class="detail-panel">
         <div class="detail-panel-left">
-            <app-dashboard />
+            <app-dashboard (subjectChange)="handleTabChange($event)" />
         </div>
-        <div class="detail-panel-right">
-            <p class="bold-title">{{locationName}}</p>
-            <div class="detail-panel-items-set">
-                <div class="detail-item-asset detail-item-common">
-                    <div class="detail-item-title">
-                        {{ 'Assets' | translate}}
-                    </div>
-                    <div class="asset-set">
-                        <app-asset-info [name]="'Capacity' | translate" value="--" unit="MWp" />
-                        <app-asset-info [name]="'irrad' | translate" value="--" unit="kW/m²" />
-                        <app-asset-info [name]="'matrix' | translate" value="--" subtitle="INV X SCB" />
-                        <app-asset-info [name]="'online' | translate" value="--" [unit]="'days' | translate" />
-                    </div>
-                </div>
-                <div class="detail-item-performance detail-item-common">
-                    <div class="detail-item-title">
-                        {{ 'performanceTitle' | translate}}
-                    </div>
-                    <app-performance-info performance="--" inverter="--" />
-                </div>
-                <div class="detail-item-minimap">
-                    <app-mini-map [coords]="coordinates" />
-                    <span class="detail-item-minimap-location">
-                        <span class="unit">{{ 'Location' | translate}}</span>
-                        <br />
-                        {{coordinates | parseLocation}}</span>
-                </div>
-                <div class="detail-item-generation detail-item-common detail-item-title ">
-                    {{ 'generationTitle' | translate}}
-                </div>
-                <div class="detail-item-irradiation detail-item-common">
-                    {{ 'irradTimeseries' | translate }}
-                    <ng-container *ngIf="!loading; else loadingTemplate">
-                        <app-energy-chart
-                            [xData]="timeList"
-                            [yData]="radiationList"
-                            chartHeight="220px"
-                            [chartConfig]="chartConfig" />
-                    </ng-container>
-                    <ng-template #loadingTemplate>
-                        <app-loading />
-                    </ng-template>
-                </div>
+        <div class="detail-panel-right" [ngSwitch]="activeTab">
+            <app-inverter-efficiency *ngSwitchCase="DashBoard.EFFICIENCY" [locationName]="locationName"
+                [coordinates]="coordinates" [chartData]="chartData" [loading]="loading" />
+            <div *ngSwitchCase="DashBoard.STRING_PERF">
+                <p>{{'stringPerf' | translate}}</p>
+            </div>
+            <div *ngSwitchCase="DashBoard.POWER_CURVE">
+                <p>{{'powerCurve' | translate}}</p>
+            </div>
+            <div *ngSwitchCase="DashBoard.SOILING">
+                <p>{{'soilLoss' | translate}}</p>
+            </div>
+            <div *ngSwitchCase="DashBoard.CLIPPING">
+                <p>{{'clipLoss' | translate}}</p>
             </div>
         </div>
     </div>

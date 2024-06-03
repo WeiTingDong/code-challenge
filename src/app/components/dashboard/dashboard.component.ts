@@ -1,13 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-
-export enum DashBoard {
-  EFFICIENCY = 1,
-  STRING_PERF,
-  POWER_CURVE,
-  SOILING,
-  CLIPPING,
-}
+import { DashBoard } from './dashboard.enum';
 
 type TabInfo = { name: string; key: DashBoard };
 

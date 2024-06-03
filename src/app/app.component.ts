@@ -31,7 +31,7 @@ export class AppComponent {
   locationName: string = '';
   coordinates: number[] = [];
   detailData: EnergyResponse;
-  showDetail: boolean = true;
+  showDetail: boolean = false;
   showOverview: boolean = false;
 
   isLoadingEnergy: boolean = false;

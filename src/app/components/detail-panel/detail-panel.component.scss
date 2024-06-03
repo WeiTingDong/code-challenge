@@ -44,6 +44,11 @@ $item-value-size: 1.6rem;
     display: flex;
     flex-wrap: nowrap;
 
+    @media (max-width: $mobile-screen) {
+        overflow: hidden;
+    }
+
+
     &-container {
         @include center;
         position: fixed;

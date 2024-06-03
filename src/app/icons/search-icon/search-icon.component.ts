@@ -5,10 +5,4 @@ import { Component, Output, EventEmitter } from '@angular/core';
   templateUrl: './search-icon.component.html',
   styleUrl: './search-icon.component.scss',
 })
-export class SearchIconComponent {
-  @Output() click = new EventEmitter<void>();
-
-  handleClick() {
-    this.click.emit()
-  }
-}
+export class SearchIconComponent {}

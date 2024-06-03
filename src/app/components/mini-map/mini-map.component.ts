@@ -12,10 +12,6 @@ export class MinimapComponent {
   @Input() coords: [number, number];
   private minimap: L.Map;
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
   ngAfterViewInit(): void {
     this.initMinimap();
   }

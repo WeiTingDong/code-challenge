@@ -10,9 +10,13 @@ export class SearchBarComponent {
   @Input() cityList: CityInfo[]; // todo: use state management
   @Output() searchCity = new EventEmitter<String>();
 
-  inputVal: string; // todo: limit word length
+  inputVal: string;
 
   handleSearch() {
-    this.searchCity.emit(this.inputVal);
+    if (this.inputVal.length > 50) {
+      alert('Content is too long');
+    } else {
+      this.searchCity.emit(this.inputVal);
+    }
   }
 }

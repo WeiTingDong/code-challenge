@@ -48,7 +48,6 @@ export class AutoCompleteComponent {
     locations.forEach((location) => this.trie.insert(location.name));
   }
 
-  // todo: debounce
   onInputChange(value: string): void {
     this.inputValChange.emit(value);
 

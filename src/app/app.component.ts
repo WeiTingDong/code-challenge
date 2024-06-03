@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs/operators';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 
@@ -25,7 +27,7 @@ const searchScale = 13;
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   map: L.Map;
   cities: CityInfo[];
   locationName: string = '';
@@ -36,6 +38,8 @@ export class AppComponent {
 
   isLoadingEnergy: boolean = false;
   isLoadingLocation: boolean = false;
+
+  private searchSubject = new Subject<L.LatLngTuple>();
 
   constructor(
     private translate: TranslateService,
@@ -52,6 +56,25 @@ export class AppComponent {
   ngOnInit() {
     this.initMap();
     this.fetchLocationData();
+    
+    this.searchSubject.pipe(
+      debounceTime(300),
+      switchMap(coords => this.energyService.getEnergy({
+        latitude: coords[0],
+        longitude: coords[1],
+        timezone,
+        date: new Date().toISOString().split('T')[0]
+      }))
+    ).subscribe({
+      next: (data) => {
+        this.detailData = data;
+        this.isLoadingEnergy = false;
+      },
+      error: (error) => {
+        console.error('Fetch failed: ', error);
+        this.isLoadingEnergy = false;
+      }
+    });
   }
 
   private initMap(): void {
@@ -78,10 +101,10 @@ export class AppComponent {
             label_location.longitude,
           ];
           const marker = L.marker(coords).on('click', () => {
-            this.fetchEnergyData(coords);
             this.coordinates = coords;
             this.locationName = name;
             this.showDetail = true;
+            this.fetchEnergyData(coords);
           });
 
           markers.addLayer(marker);
@@ -110,35 +133,22 @@ export class AppComponent {
 
   handleSearchCity(targetCity: string): void {
     try {
-      const { name, coords } = this.getCityCoords(targetCity); // todo 考虑空值
-      this.fetchEnergyData(coords);
+      const { name, coords } = this.getCityCoords(targetCity);
       this.map.setView(coords, searchScale);
   
       this.coordinates = coords;
       this.locationName = name;
       this.showOverview = true;
+      this.fetchEnergyData(coords);
     } catch {
       console.error("Fail to find location")
+      alert(`Fail to find ${targetCity}, which is not in Singapore`)
     }
   }
 
   private fetchEnergyData(coords: L.LatLngTuple): void {
-    const [latitude, longitude] = coords;
-    const date = new Date().toISOString().split('T')[0]; // todo
-
     this.isLoadingEnergy = true;
-    this.energyService
-      .getEnergy({ latitude, longitude, timezone, date })
-      .subscribe({
-        next: (data) => {
-          this.detailData = data;
-          this.isLoadingEnergy = false;
-        },
-        error: (error) => {
-          console.error('Fetch failed: ', error);
-          this.isLoadingEnergy = false;
-        },
-      });
+    this.searchSubject.next(coords);
   }
 
   private getCityCoords(name: string = ''): CityInfo {

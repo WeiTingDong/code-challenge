@@ -12,7 +12,7 @@
     z-index: 1;
 
     &:hover {
-        background: rgb(103, 103, 103);
+        background: $hover-color;
     }
 
     @media (max-width: $mobile-screen) {

@@ -14,5 +14,9 @@
     "matrix": "电厂矩阵",  
     "efficiency": "逆变器效率",  
     "Location": "位置",  
-    "search": "搜索"  
+    "search": "搜索",
+    "stringPerf": "串列性能",
+    "powerCurve": "功率曲线",
+    "soilLoss": "积尘损失",
+    "clipLoss": "截断损失"
 }

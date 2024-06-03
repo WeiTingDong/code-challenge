@@ -1,3 +1,31 @@
+@import "../../../styles.scss";
+@import "../detail-panel/detail-panel.component.scss";
+
 .dashboard-container {
     height: 100%;
+}
+
+.dashboard {
+    &-title {
+        font-size: $item-title-font;
+        margin-bottom: 0.2rem;
+    }
+}
+
+.dashboard-subtitle {
+    @include item-name-style;
+    padding: 5px;
+    cursor: pointer;
+
+    .gear {
+        display: inline-block;
+
+        @media (max-width: $mobile-screen) {
+            display: none;
+        }
+    }
+
+    &:hover {
+        background-color: $hover-color;
+    }
 }

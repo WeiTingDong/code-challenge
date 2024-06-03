@@ -23,6 +23,15 @@ export class DetailPanelComponent {
   radiationList: number[];
   timeList: string[];
 
+  chartConfig = {
+    areaStyle: {
+      color: '#2fc7d5',
+    },
+    lineStyle: {
+      color: '#00dbda'
+    }
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     const data = changes?.chartData?.currentValue?.hourly;
     if (data) {

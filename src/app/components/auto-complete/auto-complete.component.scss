@@ -1,10 +1,17 @@
+@import '../../../styles.scss';
+
 .auto-complete {
     &-list {
         z-index: 1001;
     }
+
     &-item {
         padding: 0 2rem;
         margin-bottom: 0.4rem;
         cursor: pointer;
+    }
+
+    &-item:hover {
+        background-color: $hover-color;
     }
 }

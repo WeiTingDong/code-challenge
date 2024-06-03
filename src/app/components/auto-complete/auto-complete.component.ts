@@ -6,6 +6,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { Trie } from './trie';
+import { CityInfo } from '@app/app.component';
 
 @Component({
   selector: 'app-auto-complete',
@@ -13,7 +14,7 @@ import { Trie } from './trie';
   styleUrl: './auto-complete.component.scss',
 })
 export class AutoCompleteComponent {
-  @Input() wordList: any[];
+  @Input() wordList: CityInfo[];
   @Input() inputVal: string;
 
   @Output() inputValChange = new EventEmitter<string>();

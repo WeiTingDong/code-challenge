@@ -6,7 +6,7 @@ import {
   SimpleChanges,
   HostListener,
   AfterViewInit,
-  OnChanges
+  OnChanges,
 } from '@angular/core';
 import * as echarts from 'echarts';
 
@@ -19,21 +19,29 @@ export class EnergyChartComponent implements AfterViewInit, OnChanges {
   @Input() chartHeight: string;
   @Input() xData: string[];
   @Input() yData: number[];
+  @Input() chartConfig: {
+    areaStyle?: Record<string, any>;
+    lineStyle?: Record<string, any>;
+  } = {};
 
   @ViewChild('chartContainer', { static: false }) chartContainer: ElementRef;
   chartInstance: echarts.ECharts;
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.xData && this.xData) {
-      this.updateChart();
-    }
-    if (changes.yData && this.yData) {
-      this.updateChart();
+    let shouldUpdateChart = false;
+
+    if (changes.xData && this.xData || changes.yData && this.yData) {
+      shouldUpdateChart = true;
     }
     if (changes.chartHeight && this.chartHeight) {
       this.updateChartHeight();
-      this.updateChart();
+      shouldUpdateChart = true;
     }
+    if (Object.keys(changes.chartConfig).length > 0) {
+      shouldUpdateChart = true;
+    }
+
+    shouldUpdateChart && this.updateChart();
   }
 
   ngAfterViewInit(): void {
@@ -70,6 +78,8 @@ export class EnergyChartComponent implements AfterViewInit, OnChanges {
 
     const xData = this.xData;
     const yData = this.yData;
+
+    const { areaStyle, lineStyle } = this.chartConfig;
 
     const option = {
       animation: false,
@@ -116,13 +126,13 @@ export class EnergyChartComponent implements AfterViewInit, OnChanges {
           type: 'line',
           smooth: true,
           data: yData,
-          areaStyle: {
+          areaStyle: areaStyle || {
             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
               { offset: 0, color: 'rgba(0, 255, 233, 0.5)' },
               { offset: 1, color: 'rgba(0, 77, 167, 0.5)' },
             ]),
           },
-          lineStyle: {
+          lineStyle: lineStyle || {
             width: 2,
             color: 'rgba(0, 255, 233, 1)',
           },
@@ -132,6 +142,6 @@ export class EnergyChartComponent implements AfterViewInit, OnChanges {
     };
 
     this.chartInstance.setOption(option);
-    this.chartInstance.resize(); // 确保在更新图表后重新调整大小
+    this.chartInstance.resize();
   }
 }

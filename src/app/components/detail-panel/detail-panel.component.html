@@ -37,7 +37,11 @@
                 <div class="detail-item-irradiation detail-item-common">
                     {{ 'irradTimeseries' | translate }}
                     <ng-container *ngIf="!loading; else loadingTemplate">
-                        <app-energy-chart [xData]="timeList" [yData]="radiationList" chartHeight="220px" />
+                        <app-energy-chart
+                            [xData]="timeList"
+                            [yData]="radiationList"
+                            chartHeight="220px"
+                            [chartConfig]="chartConfig" />
                     </ng-container>
                     <ng-template #loadingTemplate>
                         <app-loading />

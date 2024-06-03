@@ -14,5 +14,9 @@
     "matrix": "Plant Matrix",
     "efficiency": "Inverter Efficiency",
     "Location": "Location",
-    "search": "Search"
+    "search": "Search",
+    "stringPerf": "String Performance",
+    "powerCurve": "Power Curve",
+    "soilLoss": "Soiling Loss",
+    "clipLoss": "Clipping Loss"
 }

@@ -9,7 +9,7 @@ import { EnergyService, EnergyResponse } from '@services/energy.service';
 
 L.Icon.Default.imagePath = 'assets/images/';
 
-interface CityInfo {
+export interface CityInfo {
   name: string;
   coords: [number, number];
   timezone: string;
@@ -31,7 +31,7 @@ export class AppComponent {
   locationName: string = '';
   coordinates: number[] = [];
   detailData: EnergyResponse;
-  showDetail: boolean = false;
+  showDetail: boolean = true;
   showOverview: boolean = false;
 
   isLoadingEnergy: boolean = false;

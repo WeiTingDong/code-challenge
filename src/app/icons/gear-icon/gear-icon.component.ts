@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-gear-icon',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './gear-icon.component.scss'
 })
 export class GearIconComponent {
+  @Input() showBackground: boolean = true;
 
 }

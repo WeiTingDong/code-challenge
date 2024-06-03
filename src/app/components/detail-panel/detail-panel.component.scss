@@ -37,6 +37,8 @@ $item-value-size: 1.6rem;
 
 .detail-panel {
     @include light-block;
+    @include block-border;
+
     height: 100%;
 
     display: flex;

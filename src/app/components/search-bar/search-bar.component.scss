@@ -16,6 +16,7 @@ $placeholder-color: #FFF;
 
     &-container {
         @include light-block;
+        @include block-border;
 
         display: flex;
         align-items: center;

@@ -7,6 +7,8 @@ import { LocationService } from '@services/location.service';
 import { environment } from '@environments/environment';
 import { EnergyService, EnergyResponse } from '@services/energy.service';
 
+L.Icon.Default.imagePath = 'assets/images/';
+
 interface CityInfo {
   name: string;
   coords: [number, number];

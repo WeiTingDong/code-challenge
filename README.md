@@ -1,27 +1,55 @@
-# CodeChallenge
+# Code Challenge
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.
+A frontend project to demonstrate energy data in Singapore.  
+Project tech stack: Angular + Leaflet + echarts 
 
-## Development server
+## Table of Contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Limitations](#limitations)
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Prerequisites
+ - Node version should be newer than v20
+ - Replace the GOOGLE_MAP_TOKEN in `/src/environments/environment.ts` with your map token.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Installation Steps
 
-## Running unit tests
+```bash
+git clone https://github.com/WeiTingDong/code-challenge.git
+cd code-challenge
+yarn install
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Usage
 
-## Running end-to-end tests
+```bash
+ng serve
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Features
 
-## Further help
+- Overview and detail information for selected location
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+<img src="/.github/imgs/overview.png" alt="overview" />
+
+- Mobile friendly
+
+<img src="/.github/imgs/mobile-1.png" alt="mobile view 1" />
+<img src="/.github/imgs/mobile-2.png" alt="mobile view 2" />
+
+- Autocompletion for search field (limited in Singapore)
+
+<img src="/.github/imgs/search.png" alt="autocomplete for search" />
+
+- Mini map in detail panel
+- i18n: Support both English and Chinese. Chinese content is translated by GPT.
+
+## Limitations:
+1. Only support search for Singapore cities, because https://api.data.gov.sg/v1/environment/2-hour-weather-forecast only returns Singapore cities.
+2. Only search button 🔍 in the search panel can be clicked. Other buttons in the search panel cannot be clicked.
+3. Only tested in MacBook Pro (Retina, 13-inch, Early 2015) and my own external screen. Adjustments may be required for other screen sizes.

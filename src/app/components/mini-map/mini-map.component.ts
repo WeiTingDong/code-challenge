@@ -32,8 +32,8 @@ export class MinimapComponent {
     this.minimap.touchZoom.disable();
 
     L.tileLayer(environment.tileLayerUrl, {
-      // maxZoom: 18,
-      // minZoom: 15,
+      maxZoom: 18,
+      minZoom: 15,
     }).addTo(this.minimap);
 
     // L.marker(this.coords).addTo(this.minimap);

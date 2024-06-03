@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import apiUrls from './api';
+
 export interface EnergyResponse {
   elevation: number;
   generationtime_ms: number;
@@ -25,7 +27,7 @@ export interface EnergyResponse {
 })
 
 export class EnergyService {
-  private apiUrl = 'https://api.open-meteo.com/v1/forecast';
+  private apiUrl = apiUrls.energyUrl;
 
   constructor(private http: HttpClient) { }
 

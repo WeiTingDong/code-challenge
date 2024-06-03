@@ -33,6 +33,8 @@ $position-right: 2rem;
 
     &-item {
         @include light-block;
+        @include block-border;
+
         width: 48%;
         height: 8rem;
 
@@ -46,6 +48,8 @@ $position-right: 2rem;
 
     &-item-lg {
         @include light-block;
+        @include block-border;
+
         border-radius: 15px;
         height: 9rem;
         padding: $item-padding;

@@ -12,9 +12,10 @@ Project tech stack: Angular + Leaflet + echarts
 
 ## Installation
 
-### Prerequisites
+### Prerequisites⭐️
  - Node version should be newer than v20
- - Replace the GOOGLE_MAP_TOKEN in `/src/environments/environment.ts` with your map token.
+ - Replace the `GOOGLE_MAP_TOKEN` in `/src/environments/environment.ts` with your map token. Contact me for the token or use another `tileLayerUrl` provided in the code.
+ - For Chinese users, a VPN is required because the `tileLayerUrl` is banned by GFW.
 
 
 ### Installation Steps
